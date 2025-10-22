@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Challenges - BSR Automation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="nav-link">← Home</a>
+        <a href="non-technical.html" class="nav-link">← Non-Technical</a>
+    </nav>
+
+    <section class="challenges-section">
+        <h1 class="main-title">
+            Challenges
+            <span class="subtitle">Technical</span>
+        </h1>
+        
+        <div class="cards-container">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Environment<br>Limitation</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>T&E unable to run due to Citrix environment limitation. Enhance coding structure for testing purposes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Manual<br>Effort</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Manual input is needed only once or when there are changes in GL. Coordinate with Genpact to upload GL files in SharePoint, allowing the script to automatically update data from SharePoint into the report/SAP.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Connection<br>Issue</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>To be further investigated and resolved – to get feedback and discuss with Rolando.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Operation<br>Constraint</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Spend additional time to run the project. Operation constraint requires careful planning and execution.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Exported<br>File Issue</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Implement a background job in SAP to extract data, reducing RAM usage and improving efficiency. This allows data to be processed without needing to keep the file open on the screen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>Large Data<br>File</h2>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>NAM 4314 file contains a large volume of data (800k line items), causing the script to fail. Implement background job processing to handle large datasets efficiently.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
