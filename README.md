@@ -13,7 +13,7 @@ A modern, interactive web showcase demonstrating the challenges and solutions in
 
 ## 🚀 Live Demo
 
-Visit the live demo: [BSR Automation Showcase](https://yourusername.github.io/bsr-automation-showcase)
+Visit the live demo: [BSR Automation Showcase](https://izumi47.github.io/bsr-automation-showcase/)
 
 *(Replace `yourusername` with your GitHub username after deployment)*
 
@@ -46,7 +46,7 @@ Visit the live demo: [BSR Automation Showcase](https://yourusername.github.io/bs
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/bsr-automation-showcase.git
+   git clone https://github.com/Izumi47/bsr-automation-showcase.git
    cd bsr-automation-showcase
    ```
 
