@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
 
 * {
     margin: 0;
@@ -7,47 +7,39 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --dark-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    --text-primary: #ffffff;
-    --text-secondary: #b8b8d4;
-    --accent-color: #00f2fe;
-    --success-color: #00ff88;
-    --warning-color: #ffd60a;
+    --uno-red: #E4002B;
+    --uno-blue: #0063B1;
+    --uno-green: #00843D;
+    --uno-yellow: #F7B500;
+    --uno-black: #1a1a1a;
+    --card-bg: #ffffff;
+    --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #0a0a0f;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     height: 100vh;
     overflow: hidden;
     position: relative;
 }
 
-/* Animated gradient background */
+/* UNO Card Pattern Background */
 body::before {
     content: '';
     position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.1) 0%, transparent 50%);
-    animation: rotateBackground 30s linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(228, 0, 43, 0.03) 35px, rgba(228, 0, 43, 0.03) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0, 99, 177, 0.03) 35px, rgba(0, 99, 177, 0.03) 70px);
     z-index: 0;
+    opacity: 0.5;
 }
 
-@keyframes rotateBackground {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Mesh gradient overlay */
+/* Floating UNO symbols */
 body::after {
     content: '';
     position: fixed;
@@ -56,266 +48,213 @@ body::after {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.05) 30%, rgba(102, 126, 234, 0.05) 70%, transparent 70%),
-        linear-gradient(-45deg, transparent 30%, rgba(245, 87, 108, 0.05) 30%, rgba(245, 87, 108, 0.05) 70%, transparent 70%);
-    background-size: 100px 100px;
-    pointer-events: none;
+        radial-gradient(circle at 20% 80%, rgba(228, 0, 43, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 99, 177, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 132, 61, 0.1) 0%, transparent 50%);
+    animation: floatSymbols 15s ease-in-out infinite;
     z-index: 0;
-    opacity: 0.3;
+}
+
+@keyframes floatSymbols {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
 }
 
 /* Landing Page */
 .landing-container {
     position: relative;
     z-index: 1;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px;
+    overflow: hidden;
 }
 
 .landing-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 5rem;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 4rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #00f2fe 50%, #667eea 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 20px;
+    color: #fff;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: -2px;
-    animation: shimmer 3s linear infinite;
-    position: relative;
+    letter-spacing: 2px;
+    text-shadow: 
+        4px 4px 0px var(--uno-red),
+        8px 8px 0px var(--uno-blue),
+        12px 12px 0px var(--uno-green);
+    animation: titleBounce 2s ease-in-out infinite;
 }
 
-.landing-title::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    background: linear-gradient(135deg, #667eea 0%, #00f2fe 50%, #667eea 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: blur(20px);
-    opacity: 0.5;
-}
-
-@keyframes shimmer {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+@keyframes titleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .landing-subtitle {
+    font-family: 'Fredoka', sans-serif;
     font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    margin-bottom: 60px;
+    font-weight: 600;
+    color: var(--uno-yellow);
+    margin-bottom: 50px;
     text-transform: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .navigation-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 1000px;
+    gap: 40px;
+    max-width: 900px;
     width: 100%;
 }
 
+/* UNO Card Style Navigation */
 .nav-card {
     position: relative;
-    background: rgba(15, 15, 30, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    background: var(--card-bg);
+    border-radius: 25px;
     padding: 60px 40px;
     text-decoration: none;
-    color: var(--text-primary);
+    color: #fff;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: var(--card-shadow);
+    border: 8px solid #fff;
+    transform: rotate(-2deg);
 }
 
+.nav-card:nth-child(1) {
+    background: linear-gradient(135deg, var(--uno-red) 0%, #c70024 100%);
+    transform: rotate(2deg);
+}
+
+.nav-card:nth-child(2) {
+    background: linear-gradient(135deg, var(--uno-blue) 0%, #00528f 100%);
+    transform: rotate(-2deg);
+}
+
+/* Card corner decorations */
 .nav-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(245, 87, 108, 0.2));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-}
-
-.nav-card:hover::before {
-    opacity: 1;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.5);
 }
 
 .nav-card::after {
     content: '';
     position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        var(--accent-color) 90deg,
-        transparent 180deg
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    animation: rotate 4s linear infinite;
-    z-index: -1;
-}
-
-.nav-card:hover::after {
-    opacity: 0.3;
-}
-
-@keyframes rotate {
-    100% { transform: rotate(360deg); }
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    transform: rotate(180deg);
 }
 
 .nav-card h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     position: relative;
     z-index: 1;
-    background: linear-gradient(135deg, #ffffff, #b8b8d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .nav-card p {
     font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-secondary);
+    font-weight: 600;
     position: relative;
     z-index: 1;
+    opacity: 0.95;
 }
 
 .nav-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-        0 20px 60px rgba(102, 126, 234, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-15px) scale(1.05) rotate(0deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-/* Top Navigation */
+/* Top Navigation - Card Deck Style */
 .top-nav {
     position: fixed;
-    top: 30px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 15px;
+    gap: 12px;
     z-index: 100;
-    background: rgba(15, 15, 30, 0.8);
-    backdrop-filter: blur(20px);
-    padding: 12px 20px;
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 3px solid var(--uno-yellow);
+    box-shadow: 0 8px 32px rgba(247, 181, 0, 0.3);
 }
 
 .nav-link {
-    background: transparent;
-    color: var(--text-secondary);
+    background: linear-gradient(135deg, var(--uno-red), var(--uno-blue));
+    color: white;
     text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.9rem;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.nav-link:hover::before {
-    left: 100%;
+    border: 3px solid white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Challenges Section */
+/* Challenges Section - FIT IN VIEWPORT */
 .challenges-section {
     position: relative;
     z-index: 1;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 120px 40px 40px;
+    padding: 90px 30px 30px;
+    overflow: hidden;
 }
 
 .main-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Fredoka', sans-serif;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 50px;
-    position: relative;
-}
-
-.main-title::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    border-radius: 2px;
-}
-
-.main-title,
-.subtitle {
-    background: linear-gradient(135deg, #ffffff, #667eea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 25px;
+    color: #fff;
+    text-shadow: 
+        3px 3px 0px var(--uno-red),
+        6px 6px 0px var(--uno-blue);
+    text-transform: uppercase;
+    flex-shrink: 0;
 }
 
 .subtitle {
     display: block;
-    font-size: 2rem;
-    font-weight: 400;
-    margin-top: 10px;
-    background: linear-gradient(135deg, var(--accent-color), #f5576c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 8px;
+    color: var(--uno-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .cards-container {
@@ -324,24 +263,28 @@ body::after {
     grid-template-rows: repeat(2, 1fr);
     gap: 25px;
     flex: 1;
-    max-height: calc(100vh - 250px);
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    max-height: calc(100vh - 200px);
     min-height: 0;
-    align-items: stretch;
 }
 
-/* Modern Flip Cards */
+/* UNO Game Cards - PROPERLY FIXED POSITIONING */
 .flip-card {
     perspective: 1500px;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-style: preserve-3d;
-    min-height: 100%;
 }
 
 .flip-card.flipped .flip-card-inner {
@@ -353,176 +296,218 @@ body::after {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 24px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border: 6px solid #fff;
 }
+
+/* Assign different UNO colors to each card front AND back */
+.flip-card:nth-child(1) .flip-card-front { background: linear-gradient(135deg, var(--uno-red), #c70024); }
+.flip-card:nth-child(2) .flip-card-front { background: linear-gradient(135deg, var(--uno-blue), #00528f); }
+.flip-card:nth-child(3) .flip-card-front { background: linear-gradient(135deg, var(--uno-green), #006b32); }
+.flip-card:nth-child(4) .flip-card-front { background: linear-gradient(135deg, var(--uno-yellow), #d69e00); }
+.flip-card:nth-child(5) .flip-card-front { background: linear-gradient(135deg, var(--uno-red), #c70024); }
+.flip-card:nth-child(6) .flip-card-front { background: linear-gradient(135deg, var(--uno-blue), #00528f); }
+
+.flip-card:nth-child(1) .flip-card-back { background: linear-gradient(135deg, var(--uno-red), #c70024); }
+.flip-card:nth-child(2) .flip-card-back { background: linear-gradient(135deg, var(--uno-blue), #00528f); }
+.flip-card:nth-child(3) .flip-card-back { background: linear-gradient(135deg, var(--uno-green), #006b32); }
+.flip-card:nth-child(4) .flip-card-back { background: linear-gradient(135deg, var(--uno-yellow), #d69e00); }
+.flip-card:nth-child(5) .flip-card-back { background: linear-gradient(135deg, var(--uno-red), #c70024); }
+.flip-card:nth-child(6) .flip-card-back { background: linear-gradient(135deg, var(--uno-blue), #00528f); }
 
 .flip-card-front {
-    background: rgba(15, 15, 30, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
+    color: rgb(80, 80, 80);
     overflow: hidden;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Glowing orb effect */
 .flip-card-front::before {
     content: '';
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.6), transparent 70%);
+    width: 250px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
-    filter: blur(40px);
-    animation: float 6s ease-in-out infinite;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes float {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.2); }
-}
-
-/* Animated border gradient */
+/* Corner circles like UNO cards with numbers */
 .flip-card-front::after {
-    content: '';
     position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--accent-color), #f5576c, var(--accent-color));
-    background-size: 200% 200%;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: borderRotate 3s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    top: 12px;
+    left: 12px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: inherit;
 }
 
-.flip-card:hover .flip-card-front::after {
-    opacity: 1;
-}
-
-@keyframes borderRotate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* Add numbers to corner circles */
+.flip-card:nth-child(1) .flip-card-front::after { content: '1'; color: var(--uno-red); }
+.flip-card:nth-child(2) .flip-card-front::after { content: '2'; color: var(--uno-blue); }
+.flip-card:nth-child(3) .flip-card-front::after { content: '3'; color: var(--uno-green); }
+.flip-card:nth-child(4) .flip-card-front::after { content: '4'; color: var(--uno-yellow); }
+.flip-card:nth-child(5) .flip-card-front::after { content: '5'; color: var(--uno-red); }
+.flip-card:nth-child(6) .flip-card-front::after { content: '6'; color: var(--uno-blue); }
 
 .flip-card-front h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.8rem;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.4rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.3;
     position: relative;
     z-index: 2;
-    background: linear-gradient(135deg, #ffffff, var(--text-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .flip-card-back {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(245, 87, 108, 0.15));
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     transform: rotateY(180deg);
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    overflow: hidden;
+    /* border: 6px solid var(--uno-yellow); */
 }
 
 .flip-card-back::before {
-    content: '';
+    content: 'UNO';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.flip-card:hover .flip-card-back::before {
-    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 6rem;
+    font-weight: 700;
+    color: rgba(228, 0, 43, 0.05);
+    z-index: 0;
 }
 
 .flip-card-back p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    font-weight: 400;
-    text-align: left;
-    color: var(--text-primary);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
     position: relative;
     z-index: 1;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    max-height: 100%;
+    overflow-y: auto;
 }
 
-/* Achievement Badge */
+.flip-card:hover {
+    transform: translateY(-5px);
+}
+
+.flip-card:hover .flip-card-front {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Achievement Badge - UNO Style */
 .achievement-badge {
     position: fixed;
-    top: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(102, 126, 234, 0.2));
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-primary);
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--uno-red), var(--uno-blue));
+    border: 3px solid white;
+    color: white;
     padding: 12px 24px;
-    border-radius: 50px;
-    font-weight: 600;
+    border-radius: 25px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
     font-size: 0.9rem;
-    box-shadow: 0 8px 32px rgba(0, 242, 254, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     z-index: 100;
-    animation: slideInRight 1s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: slideInBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-@keyframes slideInRight {
-    from {
-        transform: translateX(150%);
+@keyframes slideInBounce {
+    0% {
+        transform: translateX(150%) rotate(45deg);
         opacity: 0;
     }
-    to {
-        transform: translateX(0);
+    60% {
+        transform: translateX(-10%) rotate(-5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
         opacity: 1;
     }
 }
 
+/* Draw Card Animation */
+@keyframes drawCard {
+    0% {
+        transform: translateY(100vh) rotate(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.card-entrance {
+    animation: drawCard 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
 /* Responsive Design */
 @media (max-width: 1400px) {
-    .flip-card-front h2 { font-size: 1.5rem; }
-    .flip-card-back p { font-size: 0.85rem; }
+    .flip-card-front h2 { font-size: 1.2rem; }
+    .flip-card-back p { font-size: 0.75rem; }
 }
 
 @media (max-width: 1200px) {
-    .main-title { font-size: 3rem; }
-    .subtitle { font-size: 1.6rem; }
-    .flip-card-front h2 { font-size: 1.3rem; }
+    .main-title { font-size: 2.5rem; }
+    .subtitle { font-size: 1.5rem; }
+    .flip-card-front h2 { font-size: 1.1rem; }
 }
 
 @media (max-width: 768px) {
-    body { padding: 0; }
+    body { 
+        height: 100vh;
+        overflow: hidden;
+    }
     
     .landing-container {
         padding: 30px 20px;
+        height: 100vh;
     }
     
     .landing-title { 
-        font-size: 2.5rem;
-        letter-spacing: -1px;
+        font-size: 2.2rem;
+        text-shadow: 
+            2px 2px 0px var(--uno-red),
+            4px 4px 0px var(--uno-blue);
     }
     
     .landing-subtitle { 
-        font-size: 1.2rem;
-        margin-bottom: 40px;
-        letter-spacing: 4px;
+        font-size: 1.3rem;
+        margin-bottom: 35px;
     }
     
     .navigation-cards {
@@ -531,42 +516,60 @@ body::after {
     }
     
     .nav-card {
-        padding: 40px 30px;
+        padding: 50px 30px;
     }
     
-    .nav-card h2 { font-size: 2rem; }
+    .nav-card h2 { font-size: 1.8rem; }
     
     .challenges-section {
-        padding: 100px 20px 20px;
+        padding: 80px 15px 15px;
+        height: 100vh;
     }
     
     .main-title {
-        font-size: 2.2rem;
-        margin-bottom: 40px;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-shadow: 
+            2px 2px 0px var(--uno-red),
+            4px 4px 0px var(--uno-blue);
     }
     
-    .subtitle { font-size: 1.3rem; }
+    .subtitle { font-size: 1.2rem; }
     
     .cards-container {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 15px;
+        max-height: calc(100vh - 160px);
     }
     
-    .flip-card-front h2 { font-size: 1rem; }
+    .flip-card-front h2 { font-size: 0.95rem; }
     .flip-card-back p { 
-        font-size: 0.75rem;
-        line-height: 1.5;
+        font-size: 0.7rem;
+        line-height: 1.3;
+        padding: 10px;
+    }
+    
+    .flip-card-front::before {
+        width: 70px;
+        height: 70px;
     }
     
     .top-nav {
-        top: 20px;
-        padding: 10px 15px;
-        gap: 10px;
+        top: 15px;
+        padding: 8px 15px;
+        gap: 8px;
     }
     
     .nav-link {
-        padding: 10px 18px;
-        font-size: 0.8rem;
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+    
+    .achievement-badge {
+        font-size: 0.75rem;
+        padding: 10px 16px;
+        top: 15px;
+        right: 15px;
     }
 }
