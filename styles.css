@@ -270,6 +270,19 @@ body::after {
     min-height: 0;
 }
 
+.cards-container-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 25px;
+    flex: 1;
+    max-width: 950px;
+    margin: 0 auto;
+    width: 100%;
+    max-height: calc(100vh - 200px);
+    min-height: 0;
+}
+
 /* UNO Game Cards - PROPERLY FIXED POSITIONING */
 .flip-card {
     perspective: 1500px;
