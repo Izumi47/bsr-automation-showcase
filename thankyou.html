@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - BSR Automation Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #8B1450 0%, #6B0F5E 50%, #4A0D42 100%);
+            font-family: 'Nunito', sans-serif;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Polka dot pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 2px, transparent 2px);
+            background-size: 40px 40px;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .thankyou-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
+        }
+
+        /* Decorative elements */
+        .deco-circle {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .deco-circle-1 {
+            width: 300px;
+            height: 300px;
+            background: #FFB6C1;
+            top: -100px;
+            right: -100px;
+        }
+
+        .deco-circle-2 {
+            width: 200px;
+            height: 200px;
+            background: #FFA07A;
+            bottom: 50px;
+            left: -50px;
+        }
+
+        .deco-circle-3 {
+            width: 150px;
+            height: 150px;
+            background: #87CEEB;
+            top: 40%;
+            right: 50px;
+        }
+
+        .thankyou-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 7rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInScale 1.5s ease-out;
+            margin-bottom: 30px;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating arrows decoration */
+        .arrow-deco {
+            position: fixed;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 4rem;
+            font-weight: bold;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .arrow-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .arrow-2 {
+            top: 60%;
+            right: 8%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+
+        /* Team Section */
+        .team-section {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .leadership-section-2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .leadership-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 12px 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #FFD700;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .leadership-card-2 {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 12px 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #FFD700;
+            width: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
+        .leadership-card-2-2 {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 12px 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #FFD700;
+            width: auto;
+            min-width: 170px;
+            max-width: 170px;
+        }
+
+        .leadership-card .name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B1450;
+            margin-bottom: 4px;
+        }
+
+        .leadership-card-2 .name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8B1450;
+            margin-bottom: 4px;
+        }
+
+        .leadership-card-2-2 .name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #8B1450;
+            margin-bottom: 4px;
+        }
+
+        .leadership-card .role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .leadership-card-2 .role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .leadership-card-2-2 .role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        /* Team Groups Grid */
+        .team-groups {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .team-group {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #FFB6C1;
+        }
+
+        .team-group.mini-champions {
+            border: 3px solid #87CEEB;
+        }
+
+        .team-group-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8B1450;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 2px solid #FFB6C1;
+            padding-bottom: 8px;
+        }
+
+        .team-group.mini-champions .team-group-title {
+            border-bottom: 2px solid #87CEEB;
+        }
+
+        .regions-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 15px;
+        }
+
+        .region-group {
+            margin-bottom: 0;
+        }
+
+        .region-name {
+            font-weight: 700;
+            color: #6B0F5E;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .member-names {
+            font-size: 0.8rem;
+            color: #444;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        /* Mini Champions Section */
+        .mini-champions {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #87CEEB;
+            margin-bottom: 18px;
+        }
+
+        .mini-champions-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8B1450;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 2px solid #87CEEB;
+            padding-bottom: 8px;
+        }
+
+        .champion-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .champion-item {
+            font-size: 0.8rem;
+            color: #444;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .champion-region {
+            font-weight: 700;
+            color: #6B0F5E;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .thankyou-title {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+            }
+
+            .team-title {
+                font-size: 2rem;
+            }
+
+            .team-groups {
+                grid-template-columns: 1fr;
+            }
+
+            .champion-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .thankyou-container {
+                padding: 20px;
+            }
+
+            .thankyou-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .team-title {
+                font-size: 1.5rem;
+            }
+
+            .leadership-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .leadership-section-2 {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .leadership-card {
+                min-width: auto;
+            }
+
+            .leadership-card-2 {
+                min-width: auto;
+            }
+
+            .leadership-card-2-2 {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative elements -->
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="deco-circle deco-circle-3"></div>
+
+    <div class="thankyou-container">
+        <h1 class="thankyou-title">THANK YOU</h1>
+
+        <h2 class="team-title">Associate Director P2P APAC</h2>
+        <!-- Team Section -->
+        <div class="team-section">
+            <!-- Leadership -->
+            <div class="leadership-section">
+                <div class="leadership-card">
+                    <div class="name">Kelly Towh</div>
+                    <!-- <div class="role">Associate Director P2P APAC</div> -->
+                </div>
+            </div>
+
+            <h2 class="team-title">Digital CoE Digital Oversight and Support</h2>
+            <div class="leadership-section-2">
+                <div class="leadership-card-2">
+                    <div class="name">Samantha Ing</div>
+                    <!-- <div class="role">P2P Operations Project Manager</div> -->
+                </div>
+                <div class="leadership-card-2-2">
+                    <div class="name">Ahmad Arief</div>
+                    <!-- <div class="role">P2P Operations Project Manager</div> -->
+                </div>
+            </div>
+
+            <h2 class="team-title">AutoSquad Team</h2>
+
+            <!-- Auto Squad Groups -->
+            <div class="team-groups">
+                <!-- Mini Champions Group -->
+                <div class="team-group mini-champions">
+                    <div class="team-group-title">Mini Champions</div>
+                    <div class="regions-container">
+                        <div class="region-group">
+                            <div class="region-name">AP NAM</div>
+                            <div class="member-names">Nurul</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">AP LATAM/IPR</div>
+                            <div class="member-names">Zakiah</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">AP EU</div>
+                            <div class="member-names">Jeslyn<br>Jass Xin</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">AP ASP</div>
+                            <div class="member-names">XiuYun</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">T&E NAM/LATAM/EU</div>
+                            <div class="member-names">Farhana</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">T&E IPR</div>
+                            <div class="member-names">Catherine</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AP Group -->
+                <div class="team-group">
+                    <div class="team-group-title">AP Team</div>
+                    <div class="regions-container">
+                        <div class="region-group">
+                            <div class="region-name">EU</div>
+                            <div class="member-names">Jeslyn<br>Jass Xin</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">ASP</div>
+                            <div class="member-names">XiuYun</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">LATAM/IPR</div>
+                            <div class="member-names">Zakiah<br>Nurul<br>Adinie<br>Emily Lau<br>Thow Ching Yee</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">NAM</div>
+                            <div class="member-names">Nurul<br>Zakiah<br>Adinie<br>Liew Shu Hui<br>Vivian Tan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T&E Group -->
+                <div class="team-group">
+                    <div class="team-group-title">T&E Team</div>
+                    <div class="regions-container">
+                        <div class="region-group">
+                            <div class="region-name">EU</div>
+                            <div class="member-names">Farhana<br>Hoe Kin<br>Donna</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">IPR</div>
+                            <div class="member-names">Catherine<br>Jun Yi<br>Shi Shua</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">LATAM</div>
+                            <div class="member-names">Farhana<br>Jun Yi<br>Catherine</div>
+                        </div>
+                        <div class="region-group">
+                            <div class="region-name">NAM</div>
+                            <div class="member-names">Farhana<br>Hoe Kin<br>Donna<br>Shi Shua<br>Hui Leng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add entrance animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create floating particles
+            createFloatingParticles();
+        });
+
+        function createFloatingParticles() {
+            const symbols = ['✨', '⭐', '💫', '🌟'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    particle.style.position = 'fixed';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = '110vh';
+                    particle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    particle.style.opacity = '0.5';
+                    particle.style.zIndex = '0';
+                    particle.style.pointerEvents = 'none';
+                    particle.style.animation = `floatUp ${3 + Math.random() * 3}s ease-out forwards`;
+                    
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 6000);
+                }, i * 300);
+            }
+        }
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0.5;
+                }
+                100% {
+                    transform: translateY(-120vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
